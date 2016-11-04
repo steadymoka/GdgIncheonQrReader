@@ -9,7 +9,6 @@
 - [RxBinding](https://github.com/JakeWharton/RxBinding)
 - [PermissionsDispatcher](https://github.com/hotchemi/PermissionsDispatcher)
 - [Retrofit 2](http://square.github.io/retrofit/)
-- [Dagger 2](http://google.github.io/dagger/)
 - [Glide](https://github.com/bumptech/glide)
 
 ## License
