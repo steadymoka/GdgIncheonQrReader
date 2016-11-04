@@ -11,7 +11,6 @@
 - [RxBinding](https://github.com/JakeWharton/RxBinding)
 - [PermissionsDispatcher](https://github.com/hotchemi/PermissionsDispatcher)
 - [Retrofit 2](http://square.github.io/retrofit/)
-- [Glide](https://github.com/bumptech/glide)
 - [Barcode Scanner (ZXing)](https://github.com/dm77/barcodescanner)
 
 ## License
