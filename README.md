@@ -5,7 +5,6 @@
 
 ## Libraries
 - [Kotlin](https://github.com/JetBrains/kotlin)
-- [Realm-java](https://github.com/realm/realm-java)
 - Support libraries
 - RecyclerViews
 - [RxJava](https://github.com/ReactiveX/RxJava) and [RxAndroid](https://github.com/ReactiveX/RxAndroid) 
