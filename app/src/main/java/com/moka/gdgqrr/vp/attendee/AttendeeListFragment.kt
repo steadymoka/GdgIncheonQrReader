@@ -1,4 +1,4 @@
-package com.moka.gdgqrr.vp.audience
+package com.moka.gdgqrr.vp.attendee
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,7 +17,7 @@ import rx.android.schedulers.AndroidSchedulers
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class AudienceListFragment : BaseFragment() {
+class AttendeeListFragment : BaseFragment() {
 
     private var attendeeList: ArrayList<AttendeeAdapter.AttendeeData> = ArrayList()
     private var attendeeListFromSearch: ArrayList<AttendeeAdapter.AttendeeData> = ArrayList()

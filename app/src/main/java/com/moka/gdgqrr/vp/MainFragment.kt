@@ -19,7 +19,7 @@ import com.moka.framework.util.TextUtil
 import com.moka.framework.widget.dialog.AlertDialogNoButtonFragment
 import com.moka.gdgqrr.R
 import com.moka.gdgqrr.model.User
-import com.moka.gdgqrr.vp.audience.AudienceListActivity
+import com.moka.gdgqrr.vp.attendee.AttendeeListActivity
 import kotlinx.android.synthetic.main.fragment_main.*
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 import permissions.dispatcher.*
@@ -47,7 +47,7 @@ class MainFragment : BaseFragment(), ZXingScannerView.ResultHandler {
         mDatabase = FirebaseDatabase.getInstance().reference
         initZxingView()
         textView_search.setOnClickListener {
-            activity.startActivity(Intent(activity, AudienceListActivity::class.java))
+            activity.startActivity(Intent(activity, AttendeeListActivity::class.java))
             activity.overridePendingTransition(R.anim.slide_in_right, R.anim.fade_out_short)
         }
     }

@@ -1,4 +1,4 @@
-package com.moka.gdgqrr.vp.audience
+package com.moka.gdgqrr.vp.attendee
 
 
 import android.content.Context
@@ -12,8 +12,8 @@ import com.moka.framework.widget.adapter.ItemData
 import com.moka.framework.widget.adapter.RecyclerItemView
 import com.moka.gdgqrr.R
 import com.moka.gdgqrr.model.User
-import com.moka.gdgqrr.vp.audience.AttendeeAdapter.AttendeeData
-import com.moka.gdgqrr.vp.audience.AttendeeAdapter.AttendeeItemView
+import com.moka.gdgqrr.vp.attendee.AttendeeAdapter.AttendeeData
+import com.moka.gdgqrr.vp.attendee.AttendeeAdapter.AttendeeItemView
 import kotlinx.android.synthetic.main.attendee_item_view.view.*
 
 
