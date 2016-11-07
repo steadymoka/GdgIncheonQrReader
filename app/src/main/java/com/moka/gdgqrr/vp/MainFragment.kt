@@ -80,7 +80,13 @@ class MainFragment : BaseFragment(), ZXingScannerView.ResultHandler {
         MLog.deb(rawResult.text)
         MLog.deb(rawResult.barcodeFormat.toString())
 
-        val id = rawResult.text.split(":")[1]
+        val idArray = rawResult.text.split(":")
+        if (idArray.size < 2) {
+            mScannerView?.resumeCameraPreview(this@MainFragment)
+            return
+        }
+
+        val id = idArray[1]
         mDatabase.child("attendees").child(id).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError?) {
             }
