@@ -3,6 +3,16 @@
 
 참석확인, 참가자 리스트 검색 할수있습니다.
 
+## How to build
+First sign in to google
+
+goto [Firebase Console](https://console.firebase.google.com/project/gdgdevfestincheon/settings/general/android:com.moka.gdgqrr)
+with authentication
+
+download `google-services.json` to `[project]/app/`
+
+finally build app
+
 ## Libraries
 - [Kotlin](https://github.com/JetBrains/kotlin)
 - Support libraries
