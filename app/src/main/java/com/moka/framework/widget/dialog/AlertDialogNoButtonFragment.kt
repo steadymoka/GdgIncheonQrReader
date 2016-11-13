@@ -20,6 +20,7 @@ class AlertDialogNoButtonFragment : BaseDialogFragment() {
     private var iconResId = 0
     private var message: CharSequence = ""
     private var messageAlign: Int = Gravity.CENTER
+    private var okTextVisible: Boolean = true
     private var okText = ""
     private var cancelText = ""
 
@@ -52,6 +53,11 @@ class AlertDialogNoButtonFragment : BaseDialogFragment() {
 
         if (!cancelText.isEmpty())
             button_cancel.text = cancelText
+
+        if (okTextVisible)
+            button_ok.visibility = View.VISIBLE
+        else
+            button_ok.visibility = View.GONE
     }
 
     /**
@@ -96,6 +102,11 @@ class AlertDialogNoButtonFragment : BaseDialogFragment() {
 
     fun setOkText(okText: String? = ""): AlertDialogNoButtonFragment {
         this.okText = okText!!
+        return this
+    }
+
+    fun setOkTextVisible(okTextVisible: Boolean = true): AlertDialogNoButtonFragment {
+        this.okTextVisible = okTextVisible
         return this
     }
 

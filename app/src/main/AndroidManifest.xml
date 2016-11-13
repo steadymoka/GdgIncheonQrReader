@@ -31,6 +31,10 @@
 			android:name=".vp.attendee.AttendeeListActivity"
 			android:screenOrientation="portrait"/>
 
+		<activity
+			android:name=".vp.camera.CameraActivity"
+			android:screenOrientation="portrait"/>
+
 	</application>
 
 </manifest>
