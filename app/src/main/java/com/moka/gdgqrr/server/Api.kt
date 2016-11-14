@@ -7,13 +7,15 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 import rx.Observable
 
 
 object Api {
 
-    val END_POINT = "http://endpoint.net"
+    val END_POINT = "http://teamwork.hutt.co.kr"
 
     private var retrofit: Retrofit? = null
 
@@ -30,8 +32,8 @@ object Api {
 
     interface API {
 
-        @GET("/v1/api/syncLocal.json")
-        fun confirmEmail(@Query("email") email: String): Observable<Response<ConfirmEmailRes>>
+        @POST("/test/gdgkr/{email}/thanks")
+        fun confirmEmail(@Path(value = "email", encoded = true) email: String): Observable<Response<ConfirmEmailRes>>
 
     }
 
