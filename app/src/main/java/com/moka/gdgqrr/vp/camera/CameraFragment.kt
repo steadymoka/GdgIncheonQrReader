@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.google.firebase.database.*
 import com.google.zxing.Result
 import com.moka.framework.base.BaseFragment
+import com.moka.framework.extenstion.parse
 import com.moka.framework.extenstion.showToast
 import com.moka.framework.extenstion.workInBackground
 import com.moka.framework.util.MLog
@@ -18,6 +19,7 @@ import com.moka.framework.util.ScreenUtil
 import com.moka.framework.util.TextUtil
 import com.moka.framework.widget.dialog.AlertDialogNoButtonFragment
 import com.moka.gdgqrr.R
+import com.moka.gdgqrr.model.No
 import com.moka.gdgqrr.model.User
 import com.moka.gdgqrr.server.Api
 import com.moka.gdgqrr.vp.attendee.AttendeeListActivity
@@ -83,19 +85,25 @@ class CameraFragment : BaseFragment(), ZXingScannerView.ResultHandler {
         MLog.deb(rawResult.text)
         MLog.deb(rawResult.barcodeFormat.toString())
 
-        val idArray = rawResult.text.split(":")
-        if (idArray.size < 2) {
+        val no = rawResult.text.parse(No::class.java)
+        if (null == no) {
             mScannerView?.resumeCameraPreview(this@CameraFragment)
             return
         }
 
-        val id = idArray[1]
-        mDatabase.child("attendees").child(id).addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError?) {
+        MLog.deb("id ::: ${no.no}")
+        mDatabase.child("attendees").child(no.no.toString()).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(e: DatabaseError?) {
+                MLog.deb("error :: ${e.toString()}")
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val user = dataSnapshot.getValue(User::class.java)
+                if (null == user) {
+                    mScannerView?.resumeCameraPreview(this@CameraFragment)
+                    return
+                }
+
                 val visitText: String
                 if (user.isVisit == 0)
                     visitText = "\n\n${user.email!!}\n아직 참석확인이 되지 않았어요"
@@ -110,7 +118,7 @@ class CameraFragment : BaseFragment(), ZXingScannerView.ResultHandler {
                         .showDialog(fragmentManager, { isOk ->
                             mScannerView?.resumeCameraPreview(this@CameraFragment)
                             if (isOk) {
-                                mDatabase.child("attendees").child(id).child("isVisit").setValue(1)
+                                mDatabase.child("attendees").child(no.no.toString()).child("isVisit").setValue(1)
 
                                 showToast(activity, "'${user.name}' 님 참석 되었습니다")
                                 requestEmail(user.email!!)

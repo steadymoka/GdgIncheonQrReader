@@ -5,7 +5,6 @@ import com.google.gson.JsonSyntaxException
 import com.moka.gdgqrr.server.FailureResponse
 
 fun String.parseFailure(): FailureResponse? {
-
     val result: FailureResponse?
 
     result = try {
@@ -17,7 +16,6 @@ fun String.parseFailure(): FailureResponse? {
 }
 
 fun <T> String.parse(className: Class<T>): T? {
-
     val result: T?
 
     result = try {
