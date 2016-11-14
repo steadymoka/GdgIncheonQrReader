@@ -121,7 +121,7 @@ class CameraFragment : BaseFragment(), ZXingScannerView.ResultHandler {
                                 mDatabase.child("attendees").child(no.no.toString()).child("isVisit").setValue(1)
 
                                 showToast(activity, "'${user.name}' 님 참석 되었습니다")
-                                requestEmail(user.email!!)
+                                requestEmail(user.name!!, user.email!!)
                             }
                         })
             }
@@ -129,8 +129,8 @@ class CameraFragment : BaseFragment(), ZXingScannerView.ResultHandler {
         })
     }
 
-    private fun requestEmail(email: String) {
-        Api.api.confirmEmail(email)
+    private fun requestEmail(name: String, email: String) {
+        Api.api.confirmEmail(name, email)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
