@@ -19,6 +19,7 @@ import com.moka.framework.util.ScreenUtil
 import com.moka.framework.util.TextUtil
 import com.moka.framework.widget.dialog.AlertDialogNoButtonFragment
 import com.moka.gdgqrr.R
+import com.moka.gdgqrr.model.Log
 import com.moka.gdgqrr.model.No
 import com.moka.gdgqrr.model.User
 import com.moka.gdgqrr.server.Api
@@ -28,6 +29,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView
 import permissions.dispatcher.*
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import java.util.*
 
 @RuntimePermissions
 class CameraFragment : BaseFragment(), ZXingScannerView.ResultHandler {
@@ -121,12 +123,18 @@ class CameraFragment : BaseFragment(), ZXingScannerView.ResultHandler {
                                 mDatabase.child("attendees").child(no.no.toString()).child("isVisit").setValue(1)
 
                                 showToast(activity, "'${user.name}' 님 참석 되었습니다")
+                                logName(user.name!!, no.no.toString())
                                 requestEmail(user.name!!, user.email!!)
                             }
                         })
             }
 
         })
+    }
+
+    private fun logName(name: String, no: String) {
+        val log = Log(no, name, Date().time.toString())
+        mDatabase.child("VisitLog").push().setValue(log)
     }
 
     private fun requestEmail(name: String, email: String) {
